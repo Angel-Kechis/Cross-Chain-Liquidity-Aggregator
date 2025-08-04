@@ -353,3 +353,60 @@
     is-active: bool
   }
 )
+
+(define-map user-stakes
+  { user: principal, farm-id: uint }
+  {
+    staked-amount: uint,
+    reward-debt: uint,
+    last-stake-time: uint,
+    lock-end-time: uint
+  }
+)
+
+(define-map governance-proposals
+  { proposal-id: uint }
+  {
+    title: (string-ascii 64),
+    description: (string-ascii 256),
+    proposer: principal,
+    voting-start: uint,
+    voting-end: uint,
+    votes-for: uint,
+    votes-against: uint,
+    executed: bool,
+    proposal-type: uint
+  }
+)
+
+(define-map user-votes
+  { user: principal, proposal-id: uint }
+  {
+    vote: bool,
+    voting-power: uint,
+    timestamp: uint
+  }
+)
+
+(define-map governance-tokens
+  { user: principal }
+  {
+    balance: uint,
+    delegated-to: (optional principal),
+    voting-power: uint
+  }
+)
+
+;; INSURANCE SYSTEM
+(define-map insurance-policies
+  { policy-id: uint }
+  {
+    holder: principal,
+    coverage-amount: uint,
+    premium-paid: uint,
+    coverage-type: uint,
+    start-time: uint,
+    end-time: uint,
+    is-active: bool
+  }
+)
